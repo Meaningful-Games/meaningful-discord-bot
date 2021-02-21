@@ -67,7 +67,7 @@ const pollEmbed = async (msg, title, options, timeout = 30, emojiList = defEmoji
 		text = '*Ding! Ding! Ding! Time\'s up!\n Results are in,*\n\n';
 		for (const emoji in emojiInfo) text += `\`${emojiInfo[emoji].option}\` - \`${emojiInfo[emoji].votes}\`\n\n`;
 		poll.delete();
-		msg.channel.send(`The poll has been closed and the report has been sent to #${config.output_channel}`)
+		msg.channel.send(`The poll has been closed and the report has been sent to ${msg.guild.channels.cache.get(config.output_channel).toString()}`);
 		msg.client.channels.cache.get(config.output_channel).send(embedBuilder(title, msg.author.tag).setDescription(text));
 	});
 };

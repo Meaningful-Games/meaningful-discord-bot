@@ -1,5 +1,5 @@
 const fetch = require("node-fetch")
-const { prefix, token } = require("./config.json");
+const { prefix, token, save_channel } = require("./config.json");
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
@@ -18,6 +18,8 @@ client.once("ready", () => {
 });
 
 client.on("message", messageHandler);
+
+client.on("messageReactionAdd", reactionHandler);
 
 client.login(token);
 
@@ -76,17 +78,30 @@ async function messageHandler(message) {
                 console.log(err);
                 message.channel.send("Something went wrong!")
             }
-    }
-    if (message.author.id == pollmasterID) {
-        console.log("pollmaster texted")
-        message.awaitReactions(reactionFilter, { time: 2000, errors: ["time"] })
-            .then(collected => console.log(collected.size))
-            .catch(collected => {
-                console.log("Number of reactions: ", collected.size);
-                if (collected.size > 0) message.react("📎");
-            })
+        }
+        if (message.author.id == pollmasterID) {
+            console.log("pollmaster texted")
+            message.awaitReactions(reactionFilter, { time: 2000, errors: ["time"] })
+                .then(collected => console.log(collected.size))
+                .catch(collected => {
+                    console.log("Number of reactions: ", collected.size);
+                    if (collected.size > 0) message.react("📎");
+                })
+        }
     }
 }
+
+async function reactionHandler(reaction, user) {
+    if (reaction.partial) {
+		try {
+			await reaction.fetch();
+		} catch (error) {
+			console.error('Something went wrong when fetching the message: ', error);
+			return;
+		}
+	}
+    console.log("Emoji!");
+    if (reaction.emoji.name === "💾") reaction.message.client.channels.cache.get(save_channel).send(`**${reaction.message.author.username}:** ${reaction.message.content}`);
 }
 
 // Utility Functions

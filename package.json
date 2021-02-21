@@ -1,7 +1,7 @@
 {
-  "name": "pollmaster-csv-exporter",
+  "name": "meaningful-discord-bot",
   "version": "1.0.0",
-  "description": "A discord bot to send pollmaster poll data to the given channel",
+  "description": "A discord bot made to meet the requirements of Meaningful people",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
