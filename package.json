@@ -1,0 +1,19 @@
+{
+  "name": "pollmaster-csv-exporter",
+  "version": "1.0.0",
+  "description": "A discord bot to send pollmaster poll data to the given channel",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "author": "Meaningful Games",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
