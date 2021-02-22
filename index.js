@@ -5,10 +5,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 
 // Function Modules
-const PollEmbed = require("./functions/poll");
 const pollEmbed = require("./functions/poll");
-
-const pollmasterID = "444514223075360800";
 
 client.once("ready", () => {
     console.log("ready!");
@@ -23,9 +20,8 @@ client.login(process.env.token);
 
 async function messageHandler(message) {
     // DMs
-    if (message.channel.type == "dm" && (!message.author.bot || message.author.id == pollmasterID)) {
-        message.author.send("You are DMing me now!");
-        console.log(message.content)
+    if (message.channel.type == "dm" && !message.author.bot) {
+        message.author.send("Thanks for DMing, but I can't reply rn :)");
         return;
     }
 
@@ -76,15 +72,8 @@ async function messageHandler(message) {
                 console.log(err);
                 message.channel.send("Something went wrong!")
             }
-        }
-        if (message.author.id == pollmasterID) {
-            console.log("pollmaster texted")
-            message.awaitReactions(reactionFilter, { time: 2000, errors: ["time"] })
-                .then(collected => console.log(collected.size))
-                .catch(collected => {
-                    console.log("Number of reactions: ", collected.size);
-                    if (collected.size > 0) message.react("📎");
-                })
+        } else if (command === "help") {
+            message.channel.send("> The following command are available rn - \n **!poll** - Used to create polls\n\n> Other Features - \n**Save Messages:** React to any message with 💾 to save it");
         }
     }
 }
@@ -98,7 +87,6 @@ async function reactionHandler(reaction, user) {
 			return;
 		}
 	}
-    console.log("Emoji!");
     if (reaction.emoji.name === "💾") reaction.message.client.channels.cache.get(save_channel).send(`**${reaction.message.author.username}:** ${reaction.message.content}`);
 }
 
@@ -108,8 +96,4 @@ async function getReportText(url) {
     res = await fetch(url);
     text = await res.text();
     return `\`\`\`${text}\`\`\``;
-}
-
-function reactionFilter(reaction, user) {
-    return reaction.emoji.name === "📎" && user.id === pollmasterID;
 }
