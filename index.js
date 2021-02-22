@@ -1,5 +1,5 @@
 const fetch = require("node-fetch")
-const { prefix, token, save_channel } = require("./config.json");
+const { prefix, save_channel } = require("./config.json");
 
 const Discord = require("discord.js");
 const client = new Discord.Client();
@@ -10,8 +10,6 @@ const pollEmbed = require("./functions/poll");
 
 const pollmasterID = "444514223075360800";
 
-let waitingForReply = false;
-
 client.once("ready", () => {
     console.log("ready!");
     client.user.setActivity("Meaningful People", { type: "WATCHING"})
@@ -21,7 +19,7 @@ client.on("message", messageHandler);
 
 client.on("messageReactionAdd", reactionHandler);
 
-client.login(token);
+client.login(process.env.token);
 
 async function messageHandler(message) {
     // DMs
