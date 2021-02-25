@@ -14,6 +14,10 @@ This command is used to create a poll. The bot will ask 3 questions -
 
 The creator of the poll can forcefully close the poll by reacting with ✅(:white_check_mark:) to the poll message.
 
+#### !gdstyle
+
+This command is used to get the official GDScript Style Guide's link.
+
 
 ### Other Functions
 

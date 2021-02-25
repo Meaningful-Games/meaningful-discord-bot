@@ -72,8 +72,10 @@ async function messageHandler(message) {
                 console.log(err);
                 message.channel.send("Something went wrong!")
             }
+        } else if (command === "gdstyle") {
+            message.channel.send("GDScript Style Guide - https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_styleguide.html")
         } else if (command === "help") {
-            message.channel.send("> The following command are available rn - \n **!poll** - Used to create polls\n\n> Other Features - \n**Save Messages:** React to any message with 💾 to save it");
+            message.channel.send("> The following command are available rn - \n **!poll** - Used to create polls\n**!gdstyle** - Links the official GDScript Style Guide\n\n> Other Features - \n**Save Messages:** React to any message with 💾 to save it");
         }
     }
 }
