@@ -16,7 +16,7 @@ client.on("message", messageHandler);
 
 client.on("messageReactionAdd", reactionHandler);
 
-client.login("ODExNjQ3OTI4Nzk5NTkyNTQw.YC1QCQ.Eia8iSZZPmdvr0EUQUn1SeDfrqw");
+client.login(process.env.token);
 
 async function messageHandler(message) {
     // DMs
