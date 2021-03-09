@@ -73,9 +73,13 @@ async function messageHandler(message) {
                 message.channel.send("Something went wrong!")
             }
         } else if (command === "gdstyle") {
-            message.channel.send("GDScript Style Guide - https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_styleguide.html")
+
+            message.channel.send("GDScript Style Guide - https://docs.godotengine.org/en/stable/getting_started/scripting/gdscript/gdscript_styleguide.html");
+
         } else if (command === "help") {
+
             message.channel.send("> The following command are available rn - \n **!poll** - Used to create polls\n**!gdstyle** - Links the official GDScript Style Guide\n\n> Other Features - \n**Save Messages:** React to any message with 💾 to save it");
+             
         }
     }
 }
@@ -90,6 +94,7 @@ async function reactionHandler(reaction, user) {
 		}
 	}
     if (reaction.emoji.name === "💾") reaction.message.client.channels.cache.get(save_channel).send(`**${reaction.message.author.username}:** ${reaction.message.content}`);
+    console.log(reaction.message.author);
 }
 
 // Utility Functions
