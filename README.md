@@ -1,4 +1,4 @@
-# Meaningful Bot
+# Lowercase Discord Bot
 
 A discord bot to hold polls and save essential messages.
 
