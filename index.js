@@ -16,7 +16,7 @@ client.on("message", messageHandler);
 
 client.on("messageReactionAdd", reactionHandler);
 
-client.login(process.env.token);
+client.login("ODExNjQ3OTI4Nzk5NTkyNTQw.YC1QCQ.Eia8iSZZPmdvr0EUQUn1SeDfrqw");
 
 async function messageHandler(message) {
     // DMs
@@ -93,8 +93,7 @@ async function reactionHandler(reaction, user) {
 			return;
 		}
 	}
-    if (reaction.emoji.name === "💾") reaction.message.client.channels.cache.get(save_channel).send(`**${reaction.message.author.username}:** ${reaction.message.content}`);
-    console.log(reaction.message.author);
+    if (reaction.emoji.name === "💾") reaction.message.client.channels.cache.get(save_channel).send(`**${reaction.message.member.displayName}:** ${reaction.message.content}`);
 }
 
 // Utility Functions
